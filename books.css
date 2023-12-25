@@ -1,0 +1,29 @@
+.books{
+    height:50vh;
+    display: grid;
+    place-items:center;
+}
+.staff{
+   display: grid;
+    place-items:center;
+}
+
+.digital{
+    display: grid;
+    place-items:center;
+
+}
+.height_fix{
+    height:2px;
+
+}
+.table_pro{
+    margin-top: 28vh;
+    display: grid;
+    place-items:center;
+
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+}

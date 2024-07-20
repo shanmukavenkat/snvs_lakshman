@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+</head>
+<body>
+
+<div class="student-profile ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-transparent border-0">
+                        <h3 class="mb-0">Inventory</h3>
+                    </div>
+                    <div class="card-body ">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Book Name</th>
+                                <td>:</td>
+                                <td><input type="text" id="enterName"></td>
+                            </tr>
+                            <tr>
+                                <th>Book Serial Number</th>
+                                <td>:</td>
+                                <td><input type="text" id="rollNo"></td>
+                            </tr>
+                            <tr>
+                                <th>Author Name</th>
+                                <td>:</td>
+                                <td><input type="text" id="authorName"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="d-flex flex-row justify-content-center mb-4">
+                        <button class="btn btn-primary" onclick="saveButton()">Search</button>
+                    </div>
+                    <div id="searchResult"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var array = [{
+        book_number: "20001",
+        title: "CLIENT/ SERVER PROGRAMMING WITH JAVA AND CORBA",
+        author: "ORFALI, ROBERT",
+    }, {
+        book_number: "20017",
+        title: "DIGITAL CONTROL SYSTEMS",
+        author: "KUO, BENJAMIN C.",
+    }, {
+        book_number: "20001",
+        title: "CLIENT/ SERVER PROGRAMMING WITH JAVA AND CORBA",
+        author: "ORFALI, ROBERT",
+    }, {
+        book_number: "20001",
+        title: "CLIENT/ SERVER PROGRAMMING WITH JAVA AND CORBA",
+        author: "ORFALI, ROBERT",
+    }];
+
+    function saveButton() {
+        var bookName = document.getElementById("enterName").value.toLowerCase();
+        var bookSerialNumber = document.getElementById("rollNo").value.toLowerCase();
+        var authorName = document.getElementById("authorName").value.toLowerCase();
+
+        var filteredArray = array.filter(function (item) {
+            return (item.title.toLowerCase().includes(bookName) ||
+                item.book_number.toLowerCase().includes(bookSerialNumber) ||
+                item.author.toLowerCase().includes(authorName));
+        });
+
+        var tableContent = "";
+        if (filteredArray.length > 0) {
+            tableContent += `
+                <table class="table table-bordered">
+                    <tr class="bg-primary-subtle text-primary fw-bold">
+                        <td>Book Number</td>
+                        <td>Title</td>
+                        <td>Author</td>
+                    </tr>
+            `;
+
+            filteredArray.forEach(function (item) {
+                tableContent += `
+                    <tr>
+                        <td>${item.book_number}</td>
+                        <td>${item.title}</td>
+                        <td>${item.author}</td>
+                    </tr>
+                `;
+            });
+
+            tableContent += `</table>`;
+        } else {
+            tableContent = '<span class="text-danger">No data found</span>';
+        }
+
+        document.getElementById('searchResult').innerHTML = tableContent;
+    }
+</script>
+
+</body>
+</html>
